@@ -1,0 +1,37 @@
+spring:
+  #redis配置
+    redis:
+      host: 127.0.0.1
+      password:
+      port: 6379
+      database: 1
+  #jdbc数据源配置
+    datasource:
+      data-source-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/shop?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true;autoReconnect=true;failOverReadOnly=false
+      username: root
+      password: 372020752
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 15
+        auto-commit: true
+        idle-timeout: 3000
+        pool-name: DatebookHikariCP
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+
+#mongo配置
+my:
+  mongo:
+      host1: 127.0.0.1
+      host2: 127.0.0.1
+      port: 27017
+      user: root
+      password: 372020752
+      test: false
+      replSetName:
+      connectionsPerHost: 5
+      connectTimeout: 10000
+      authentification: true

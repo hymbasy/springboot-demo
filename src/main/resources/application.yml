@@ -1,0 +1,34 @@
+spring:
+  #Spring boot application配置
+  application:
+    name: springboot-demo
+  profiles:
+    active: @activatedProperties@
+
+server:
+  port: 8866
+management:
+  server:
+    port: 9001
+    servlet:
+      context-path: /management
+##demo service version
+demo:
+  service:
+    version : 1.0.0
+
+# Dubbo Config properties
+dubbo:
+  application:
+    id: springboot-demo
+    name: springboot-demo
+  protocol:
+    id: dubbo
+    name: dubbo
+    port: 12345
+
+#mongo配置
+my:
+  mongo:
+    database: admin
+    dbname: feedback

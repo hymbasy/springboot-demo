@@ -20,44 +20,44 @@ import java.util.List;
 @SpringBootTest
 public class StartUpTests {
 
-	@Autowired
-	private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
-	@Autowired
-	private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
-	@Autowired
-	private MongoTemplate mongoTemplate;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-	@Test
-	public void contextLoads() {
-		stringRedisTemplate.opsForValue().set("name", "hello world");
-		Object name = stringRedisTemplate.opsForValue().get("name");
-		System.out.println(name.toString());
-	}
+    @Test
+    public void contextLoads() {
+        stringRedisTemplate.opsForValue().set("name", "hello world");
+        Object name = stringRedisTemplate.opsForValue().get("name");
+        System.out.println(name.toString());
+    }
 
-	@Test
-	public void saveUser() {
-		User user = new User();
-		user.setName("测试");
-		user.setAddress("北京市海淀区学清路");
-		user.setEmail("4651349@154.com");
-		user.setTelephone("115555555555");
-		mongoTemplate.insert(user);
-		Query query = new Query(Criteria.where("name").is("测试"));
-		List<User> userList = mongoTemplate.find(query, User.class);
-		System.out.println(JSON.toJSONString(userList));
-	}
+    @Test
+    public void saveUser() {
+        User user = new User();
+        user.setName("测试");
+        user.setAddress("北京市海淀区");
+        user.setEmail("4651349@154.com");
+        user.setTelephone("115555555555");
+        mongoTemplate.insert(user);
+        Query query = new Query(Criteria.where("name").is("测试"));
+        List<User> userList = mongoTemplate.find(query, User.class);
+        System.out.println(JSON.toJSONString(userList));
+    }
 
 
-	@Test
-	public void savePerson() {
-		StringBuilder sql = new StringBuilder("INSERT INTO PERSON(username,password,phone,address,remark,created) values (?,?,?,?,?,?)");
-		int update = jdbcTemplate.update(sql.toString(), new Object[]{"测试数据", "123456", "15555555555", "北京市海淀区学清路", "这是一条测试数据",System.currentTimeMillis()});
-		System.out.println(update);
+    @Test
+    public void savePerson() {
+        StringBuilder sql = new StringBuilder("INSERT INTO PERSON(username,password,phone,address,remark,created) values (?,?,?,?,?,?)");
+        int update = jdbcTemplate.update(sql.toString(), new Object[]{"测试数据", "123456", "15555555555", "北京市海淀区学清路", "这是一条测试数据", System.currentTimeMillis()});
+        System.out.println(update);
        /* StringBuilder sql = new StringBuilder("SELECT * FROM person WHERE id=?");
         List<User> query = jdbcTemplate.query(sql.toString(), new Object[]{1}, new RowMapper<User>() {
             @Nullable
@@ -75,6 +75,6 @@ public class StartUpTests {
         System.out.println(JSON.toJSONString(query));*/
 
 
-	}
+    }
 
 }

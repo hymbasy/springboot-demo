@@ -62,4 +62,15 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public User() {
+    }
+
+    public User(String id, String name, String email, String telephone, String address) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.telephone = telephone;
+        this.address = address;
+    }
 }

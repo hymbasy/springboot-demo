@@ -3,7 +3,7 @@ spring:
   application:
     name: springboot-demo
   profiles:
-    active: @activatedProperties@
+    active: dev #@activatedProperties@
 
 server:
   port: 8866

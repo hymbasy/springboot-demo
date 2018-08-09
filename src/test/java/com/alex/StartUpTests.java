@@ -11,10 +11,12 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,6 +39,11 @@ public class StartUpTests {
         stringRedisTemplate.opsForValue().set("name", "hello world");
         Object name = stringRedisTemplate.opsForValue().get("name");
         System.out.println(name.toString());
+        stringRedisTemplate.opsForValue().set("aa","132132");
+        User user = new User("165413123","alex","498751657@784.com","15522222222","北京北京北京");
+        ValueOperations<String, User> operations = redisTemplate.opsForValue();
+        operations.set("com.alex", user);
+        operations.set("com.alex.f", user,10, TimeUnit.SECONDS);
     }
 
     @Test
